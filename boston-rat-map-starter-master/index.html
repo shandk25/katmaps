@@ -13,6 +13,8 @@
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin="">
   </script>
   
+ <script src="jquery-2.1.1.min.js"></script> 
+	
   <!-- needed to style your webpage and map -->
   <style>
    html, body {
@@ -46,12 +48,11 @@
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
   }).addTo(map);
 
-// bike lanes
-L.tileLayer('http://tiles.mapc.org/trailmap-onroad/{z}/{x}/{y}.png',
-{
-  maxZoom: 17,
-  minZoom: 9
-}).addTo(map); 
+  // load GeoJSON from an external file
+  $.getJSON("rodents.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data).addTo(map);
+  });
 	  
   </script>
 </body>
